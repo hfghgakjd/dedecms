@@ -1,6 +1,7 @@
 package com.snowfog.controller;
 
 
+import com.snowfog.annotation.ControllerLog;
 import com.snowfog.entity.Menu;
 import com.snowfog.entity.TreeNode;
 import com.snowfog.service.MenuService;
@@ -26,6 +27,7 @@ public class MenuController {
      */
     @RequestMapping(path = "/getAll",method= RequestMethod.POST)
     @ResponseBody
+    @ControllerLog(desc = "获取panel菜单")
     public List<Menu> getAll(){
         List<Menu> menus = null;
         try{
