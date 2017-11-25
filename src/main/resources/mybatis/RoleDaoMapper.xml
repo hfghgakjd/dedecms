@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.snowfog.dao.RoleDao">
+	<select id="findRoleByRoleId" resultType="com.snowfog.entity.Role">
+        select * from t_system_role t where t.id = #{roleId}
+	</select>
+</mapper>
