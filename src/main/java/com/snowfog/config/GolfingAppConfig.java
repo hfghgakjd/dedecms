@@ -5,17 +5,13 @@ import java.io.IOException;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.aspectj.lang.annotation.Aspect;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.AdviceMode;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -27,6 +23,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages = { "com.snowfog" }, excludeFilters = {
 		@ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 @MapperScan(basePackages = { "com.snowfog.dao" })
+@EnableAspectJAutoProxy
 public class GolfingAppConfig {
 	private static final Logger log = LoggerFactory.getLogger(GolfingAppConfig.class);
 	@Value("${jdbc.driver}")
