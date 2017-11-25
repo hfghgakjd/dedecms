@@ -1,0 +1,8 @@
+.icon-save:before{
+   content:"\f0c7";font-size:12px;
+}
+.icon-gears:before{
+   content:"\f085";font-size:12px;
+}
+.icon-users:before{content:"\f0c0";font-size:12px;}
+.icon-th-list:before{content:"\f00b";font-size:12px;}
