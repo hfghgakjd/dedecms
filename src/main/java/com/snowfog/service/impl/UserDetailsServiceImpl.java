@@ -4,6 +4,7 @@ import com.snowfog.dao.RoleDao;
 import com.snowfog.dao.UserDao;
 import com.snowfog.entity.Role;
 import com.snowfog.entity.User;
+import com.snowfog.entity.UserPrincipal;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,10 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -34,10 +32,20 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         params.put("username", username);
         User user = userDao.findUserByUserName(params);
 
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        Role role = roleDao.findRoleByRoleId(ObjectUtils.isEmpty(user)?null:user.getRoleId());
-        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRoleName());
-        grantedAuthorities.add(grantedAuthority);
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
+        return new UserPrincipal(user,getRoles(user));
     }
+
+    /**
+     * 根据user获取角色
+     * @param user
+     * @return {@link List}<{@link String}>
+     */
+    private List<String> getRoles(User user) {
+        Role role = roleDao.findRoleByRoleId(ObjectUtils.isEmpty(user)?null:user.getRoleId());
+        List<String> roles = new ArrayList<>();
+        roles.add(role.getType());
+        return roles;
+    }
+
+
 }
