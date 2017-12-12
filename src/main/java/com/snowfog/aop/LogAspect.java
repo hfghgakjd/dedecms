@@ -1,9 +1,9 @@
 package com.snowfog.aop;
 
-import com.snowfog.Utils.CacheUtil;
-import com.snowfog.annotation.ControllerLog;
-import com.snowfog.entity.User;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+import java.lang.reflect.Method;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
+import com.snowfog.Utils.CacheUtil;
+import com.snowfog.annotation.ControllerLog;
 
 /**
  * @author snowfog shao
@@ -81,12 +81,12 @@ public class LogAspect {
         String targetName = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();
         Object[] arguments = joinPoint.getArgs();
-        Class targetClass = Class.forName(targetName);
+        Class<?> targetClass = Class.forName(targetName);
         Method[] methods = targetClass.getMethods();
         String description = "";
         for (Method method : methods) {
             if (method.getName().equals(methodName)) {
-                Class[] clazzs = method.getParameterTypes();
+                Class<?>[] clazzs = method.getParameterTypes();
                 if (clazzs.length == arguments.length) {
                     description = method.getAnnotation(ControllerLog.class).desc();
                     break;

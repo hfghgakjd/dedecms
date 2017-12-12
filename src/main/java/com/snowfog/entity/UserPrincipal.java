@@ -15,7 +15,12 @@ import java.util.stream.Collectors;
  */
 public class UserPrincipal implements UserDetails{
 
-    private User user;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8353276100599536944L;
+
+	private User user;
 
     private List<String> roleType;
 

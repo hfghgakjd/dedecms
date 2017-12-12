@@ -3,3 +3,8 @@
 /build/
 /out/
 *.iml
+/.nb-gradle/
+.project
+/.settings/
+.classpath
+.nb-gradle-properties
