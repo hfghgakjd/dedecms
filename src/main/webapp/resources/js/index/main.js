@@ -6,10 +6,10 @@
         success: function (data) {
             $.each(data, function (i, n) {
                 $('#aa').accordion('add', {
-                    title: n.name,
+                    title: n.text,
                     selected: false,
                     id: n.id,
-                    iconCls: n.icon,
+                    iconCls: n.iconCls,
                     content: '<div style="padding:10px"><ul id="tree_' + n.id + '"></ul></div>'
                 });
             });

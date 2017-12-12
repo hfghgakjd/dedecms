@@ -11,7 +11,6 @@
 <head>
     <title>登录</title>
     <link rel="stylesheet" href="/resources/css/snowoa.plugin.css">
-    <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container-fluid sign-form">

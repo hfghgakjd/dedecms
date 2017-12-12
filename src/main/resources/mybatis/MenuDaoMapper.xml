@@ -4,10 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.snowfog.dao.MenuDao">
-    <select id="getMenuByParentId" resultType="com.snowfog.entity.Menu">
-        select * from t_system_accordion t where t.parentId = #{parentId}
+    <select id="getMenuByParentId" resultType="com.snowfog.entity.TreeNode">
+        select * from t_system_menu t where t.parentId = #{parentId}
     </select>
     <select id="getMenuTrees" resultType="com.snowfog.entity.TreeNode">
         select * from t_system_menu t where t.parentId = #{parentId}
     </select>
+
+    <select id="getTreePagination" resultType="java.util.HashMap">
+        select * from t_system_menu t limit #{start},#{rows}
+    </select>
+
+    <select id="getTreePaginationCount" resultType="java.lang.Integer">
+        select count(t.id) from t_system_menu t limit #{start},#{rows}
+    </select>
+    
+    <insert id="insert">
+    	insert into t_system_menu(id,text,state,isLeaf,url,children,parentId,iconCls)
+    		values(uuid(),#{text},#{state},#{isLeaf},#{url},#{children},#{parentId},#{iconCls});
+    </insert>
 </mapper>

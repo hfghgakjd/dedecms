@@ -1,21 +1,23 @@
 package com.snowfog.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
 import com.snowfog.dao.RoleDao;
 import com.snowfog.dao.UserDao;
 import com.snowfog.entity.Role;
 import com.snowfog.entity.User;
 import com.snowfog.entity.UserPrincipal;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
-
-import javax.annotation.Resource;
-import java.util.*;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
