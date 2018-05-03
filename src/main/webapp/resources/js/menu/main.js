@@ -21,9 +21,9 @@ $("#tt").datagrid(
 						align : 'center'
 					},
 					{
-						field : 'iconCls',
+						field : 'icon',
 						title : '图标样式',
-						formatter : function(val, row) {
+						formatter : function(val,row) {
 							return '<i class="' + val
 									+ '" style="padding-right:10px;"></i>'
 									+ val;

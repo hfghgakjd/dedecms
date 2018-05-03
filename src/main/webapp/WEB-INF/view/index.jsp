@@ -14,7 +14,7 @@
     <script src="/resources/js/super.js"></script>
 <body class="easyui-layout">
 <div data-options="region:'north',split:false" style="height:50px;line-height: 50px;background:#1abc9c;">
-    <span class="head-title">snowsystem 教育管理系统</span>
+    <span class="head-title">dede cms内容管理系统</span>
     <div class="head-tool fr padding2x">
         <ul>
             <li><a>${pageContext.request.remoteUser}</a></li>

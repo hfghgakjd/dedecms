@@ -3,8 +3,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.snowfog.dao.UserDao">
-<select id="findUserByUserName" resultType="com.snowfog.entity.User">
-  select * from t_system_user t where t.username = #{username}
-</select>
+<mapper namespace="com.dede.dao.UserDao">
+
+    <resultMap id="userMap" type="com.dede.entity.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="roleId" column="role_id"></result>
+        <result property="qqCode" column="qq_code"></result>
+        <result property="address" column="address"></result>
+    </resultMap>
+
+    <select id="findUserByUserName" resultMap="userMap">
+        select * from t_system_user t where t.username = #{username}
+    </select>
+
 </mapper>

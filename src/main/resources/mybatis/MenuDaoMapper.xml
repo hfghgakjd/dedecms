@@ -3,12 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.snowfog.dao.MenuDao">
-    <select id="getMenuByParentId" resultType="com.snowfog.entity.TreeNode">
-        select * from t_system_menu t where t.parentId = #{parentId}
+<mapper namespace="com.dede.dao.MenuDao">
+    <resultMap id="treeNodeMap" type="com.dede.entity.TreeNode">
+        <id property="id" column="id"></id>
+        <result property="text" column="text"></result>
+        <result property="state" column="state"></result>
+        <result property="children" column="children"></result>
+        <result property="iconCls" column="icon"></result>
+        <result property="parentId" column="parent_id"></result>
+        <result property="isLeaf" column="is_leaf"></result>
+    </resultMap>
+
+    <select id="getMenuByParentId" resultMap="treeNodeMap">
+        select * from t_system_menu t where t.parent_id = #{parentId}
     </select>
-    <select id="getMenuTrees" resultType="com.snowfog.entity.TreeNode">
-        select * from t_system_menu t where t.parentId = #{parentId}
+    <select id="getMenuTrees" resultMap="treeNodeMap">
+        select * from t_system_menu t where t.parent_id = #{parentId}
     </select>
 
     <select id="getTreePagination" resultType="java.util.HashMap">
@@ -18,9 +28,4 @@
     <select id="getTreePaginationCount" resultType="java.lang.Integer">
         select count(t.id) from t_system_menu t limit #{start},#{rows}
     </select>
-    
-    <insert id="insert">
-    	insert into t_system_menu(id,text,state,isLeaf,url,children,parentId,iconCls)
-    		values(uuid(),#{text},#{state},#{isLeaf},#{url},#{children},#{parentId},#{iconCls});
-    </insert>
 </mapper>
